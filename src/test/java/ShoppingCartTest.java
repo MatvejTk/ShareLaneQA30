@@ -12,7 +12,7 @@ public class ShoppingCartTest {
     public void checkDiscount0() {
         SoftAssert softAssert = new SoftAssert();
         WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10))
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
         driver.get("https://www.sharelane.com/cgi-bin/register.py?page=2&zip_code=12345&first_name=test&" +
                 "last_name=test&email=test%40test.test&password1=12345&password2=12345");
