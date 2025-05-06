@@ -1,7 +1,4 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
@@ -32,9 +29,15 @@ public class ZipCodeTest {
         // browser.manage().window().maximize(); // открывает окно на максимальный размер = start-maximized
         // browser.manage().window().setSize(new Dimension(900, 500)); // размер окна
         // browser.manage().window().setPosition(new Point(900, 300)); // открывает окно в разных местах
+        // Set<Cookie> cookies = browser.manage().getCookies(); // получить множество cookies
+        // Cookie cookie = new Cookie("tokken", "13123213123"); // создать новую cookie
+        // browser.manage().getCookienamed("tokken"); // получить cookie, это используется часто !!!
+
         browser.manage().timeouts().implicitlyWait(10L, TimeUnit.SECONDS);
         browser.get("https://www.sharelane.com/cgi-bin/register.py");
         browser.findElement(By.name("zip_code")).sendKeys("1234");
+        String zipCode = browser.findElement(By.name("zip_code")).getAttribute("value");
+        System.out.println(zipCode);
         browser.findElement(By.cssSelector("[value=Continue]")).click();
         String actualErrorMessage = browser.findElement(By.className("error_message")).getText();
         Assert.assertEquals(actualErrorMessage, "Oops, error on page. ZIP code should have 5 digits");
